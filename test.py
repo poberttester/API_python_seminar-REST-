@@ -2,6 +2,7 @@ import pytest
 import yaml
 
 from REST_API import get
+from REST_API import get_post
 from REST_API import create_post
 
 with open('config.yaml', 'r') as f:
@@ -16,10 +17,10 @@ def test_step1(get_token):
 
 def test_step2(get_token):
     create_post(conf["url_posts"], get_token, DATA)
-    result = get(get_token)
-    lst = result['data']
-    lst_desk = [el['description'] for el in lst]
-    assert DATA['description'] in lst_desk
+    result = get_post(conf['url_posts'], get_token, DATA)
+    body = result['data']
+    list_description = [el['description'] for el in body]
+    assert DATA['description'] in list_description
 
 
 if __name__ == '__main__':

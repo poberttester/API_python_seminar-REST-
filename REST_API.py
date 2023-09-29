@@ -29,7 +29,11 @@ def get(token: str) -> str:
                             params={"owner": "notMe"})
     return response.json()
 
-
+def get_post(url: str, token: str, params: dict) -> str:
+    response = requests.get(url= url,
+                            headers={"X-Auth-Token": token},
+                            params=params)
+    return response.json()
 
 def create_post(url: str, token: str, body: dict) -> int:
     response = requests.post(url=url, headers={"X-Auth-Token": token}, data=body)
@@ -46,6 +50,6 @@ def create_post(url: str, token: str, body: dict) -> int:
 if __name__ == '__main__':
     #create_post(conf['url_posts'], get_token(), DATA)
     t= get_token()
-    temp=get_post(conf['url_posts'], t, {'description': 'Description'})
+    temp=get_post(conf['url_posts'], t, {'title': 'Title', 'description': 'Description111', 'content': 'Сontent'})
     print(temp)
     print(t)

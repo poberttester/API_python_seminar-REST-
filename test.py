@@ -18,8 +18,8 @@ def test_step2(get_token):
     create_post(conf["url_posts"], get_token, DATA)
     result = get(get_token)
     lst = result['data']
-    lst_id = [el['description'] for el in lst]
-    assert DATA['description'] in lst_id
+    lst_desk = [el['description'] for el in lst]
+    assert DATA['description'] in lst_desk
 
 
 if __name__ == '__main__':
